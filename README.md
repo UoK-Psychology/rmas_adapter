@@ -10,7 +10,13 @@ send the payload of those events to the event handlers that you specify.
 Installation
 ============
 
-At the moment you will need to download the src, and install the dependencies manually.
+Either clone from github: [git://github.com/UoK-Psychology/rmas_adapter.git](git://github.com/UoK-Psychology/rmas_adapter.git) then do 
+
+`python setup.py install`
+
+or:
+
+`pip install RMASAdapter`
 
 Configuring
 ===========
