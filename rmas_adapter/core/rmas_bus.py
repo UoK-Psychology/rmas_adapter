@@ -5,7 +5,7 @@ This module encapsulates the functionality for interacting with RMAS bus
 '''
 
 from suds.client import Client
-from conf import settings
+from rmas_adapter.conf import settings
 class RMASBus():
     
     def __init__(self):

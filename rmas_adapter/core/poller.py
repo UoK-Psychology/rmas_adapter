@@ -7,9 +7,9 @@ from threading import Timer
 
 import datetime
 import logging
-from core.rmas_bus import RMASBus
-from conf import settings
-from core.parser import parse_event
+from rmas_adapter.core.rmas_bus import RMASBus
+from rmas_adapter.conf import settings
+from rmas_adapter.core.parser import parse_event
 
 import importlib
 
