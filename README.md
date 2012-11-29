@@ -19,10 +19,10 @@ To create your adapter skeleton, you will need to run the `rmas_adapter_admin.py
 as follows:
 
 ```
-python rmas_adapter_admin.py create --name <adapter name> --bus <url to rmas bus wsdl file> --poll <polling interval in milliseconds>
+python rmas_adapter_admin.py create --name <adapter name> 
+									--target <directory to generate code into>(optional)
 ```
 
-`--bus` and `--poll` are optional (and simply pre-fill the required details in the settings file)
 
 When this command has run, it will have created the adapter skeleton in a directory with the
 same name as the `--name` argument. This adapter skeleton contains:
