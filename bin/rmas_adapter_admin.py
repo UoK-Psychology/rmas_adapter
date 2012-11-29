@@ -5,3 +5,67 @@ the runner script that allows you to start your adapter polling, and the setting
 where you specify the connection details to connect to the rmas bus, and which rmas events
 you want to respond to.
 '''
+
+
+
+import argparse
+import os
+from Cheetah.Template import Template
+import codecs
+
+
+template_dir = os.path.join(rmas_adapter.__path__[0], 'conf', 'adapter_template') #the directory that has the adapter template
+
+if __name__ == '__main__':
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument('command', 
+                        help='The command that you want to run, currently this is restricted to: create which will create a new adapter',
+                        type=str)
+    parser.add_argument('adapter_name' ,
+                        help='The name of your new adapter',
+                        type=str,)
+    parser.add_argument('--target' , '-t',
+                        help='The destination directory to build the adapter skeleton into, if not specified then the adapter will be generated in the current directory',
+                        type=str,)
+    
+    args = parser.parse_args()
+    
+    #if the command is not "create" then throw an error
+    
+    if args.command != 'create':
+        raise ValueError('This script only supports the create command at present')
+    
+    #if target is not specified then make the current directory the base directory
+    if args.target:
+        base_dir = args.target
+    else:
+        base_dir = os.getcwd()
+    
+    
+    #create the template context
+    context = {'adapter_name': args.adapter_name}
+    
+    #walk the template directory, and for each file:
+    
+    for root, dirs, files in os.walk(template_dir):
+        
+        for filename in files:
+            if file.endswith('.pyo','.pyc', 'py.class'):
+                #ignore compiled files
+                continue
+            
+            template_path = os.path.join(root, filename)
+            output_path = os.path.join(base_dir,args.adapter_name, filename )
+            #read in the contents, and make it the contents of a template object
+            #render the template and write to an identically named file in the basedirectory
+        
+            with codecs.open(template_path, 'r', 'utf-8') as template_file:
+                contents = template_file.read()
+              
+            template = Template(contents, searchList=[context]) #render the template using Cheetah
+            
+            with codecs.open(output_path, 'w', 'utf-8') as output_file:
+                output_file.write(template)
+    
+    
