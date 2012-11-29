@@ -43,8 +43,8 @@ POLL\_INTERVAL : the number of milliseconds to wait between polling
 
 If you want your adapter to do anything then you will need to also specify:
 
-RMAS_EVENTS: this configures the events that you want your adapter to respond to and  looks like:
-[('<RMAS_EVENT_NAME>,'path.to.handler.package'),]
+EVENTS: this configures the events that you want your adapter to respond to and  looks like:
+`[('<RMAS_EVENT_NAME>,'path.to.handler.package'),]`
 
 Your handler package must specify a module called handler.py, which should have a function that has
 the following signature:
