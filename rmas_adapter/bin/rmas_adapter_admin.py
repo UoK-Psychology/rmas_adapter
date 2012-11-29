@@ -10,8 +10,9 @@ you want to respond to.
 
 import argparse
 import os
-from Cheetah.Template import Template
+
 import codecs
+import rmas_adapter
 
 
 template_dir = os.path.join(rmas_adapter.__path__[0], 'conf', 'adapter_template') #the directory that has the adapter template
@@ -38,34 +39,35 @@ if __name__ == '__main__':
     
     #if target is not specified then make the current directory the base directory
     if args.target:
-        base_dir = args.target
+        base_dir = os.path.join(args.target, args.adapter_name)
     else:
-        base_dir = os.getcwd()
+        base_dir = os.path.join(os.getcwd(), args.adapter_name)
+        
+    if not os.path.exists(base_dir):
+        os.mkdir(base_dir)
     
     
-    #create the template context
-    context = {'adapter_name': args.adapter_name}
+
     
     #walk the template directory, and for each file:
     
     for root, dirs, files in os.walk(template_dir):
         
         for filename in files:
-            if file.endswith('.pyo','.pyc', 'py.class'):
+            if filename.endswith(('.pyo','.pyc', '.py.class')):
                 #ignore compiled files
                 continue
             
             template_path = os.path.join(root, filename)
-            output_path = os.path.join(base_dir,args.adapter_name, filename )
+            output_path = os.path.join(base_dir, filename )
             #read in the contents, and make it the contents of a template object
             #render the template and write to an identically named file in the basedirectory
         
             with codecs.open(template_path, 'r', 'utf-8') as template_file:
                 contents = template_file.read()
-              
-            template = Template(contents, searchList=[context]) #render the template using Cheetah
+
             
             with codecs.open(output_path, 'w', 'utf-8') as output_file:
-                output_file.write(template)
+                output_file.write(str(contents) % {'adapter_name': args.adapter_name})
     
     
