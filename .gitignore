@@ -9,5 +9,6 @@ local_settings.py
 
 dist/
 dev/
+build/
 
 MANIFEST
