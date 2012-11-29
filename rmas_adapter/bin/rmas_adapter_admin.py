@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 '''
 This is the script that you will use to create your new rmas_adapter skeleton.
 It will use the adapter_template to create a new adapter, which provides you with
@@ -46,7 +47,6 @@ if __name__ == '__main__':
     if not os.path.exists(base_dir):
         os.mkdir(base_dir)
     
-    
 
     
     #walk the template directory, and for each file:
@@ -62,12 +62,13 @@ if __name__ == '__main__':
             output_path = os.path.join(base_dir, filename )
             #read in the contents, and make it the contents of a template object
             #render the template and write to an identically named file in the basedirectory
-        
+
+            
             with codecs.open(template_path, 'r', 'utf-8') as template_file:
                 contents = template_file.read()
 
             
             with codecs.open(output_path, 'w', 'utf-8') as output_file:
-                output_file.write(str(contents) % {'adapter_name': args.adapter_name})
+                output_file.write(str(contents))
     
     
