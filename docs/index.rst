@@ -15,7 +15,7 @@ send the payload of those events to the event handlers that you specify.
 Installation
 ============
 
-Either clone from github: [git://github.com/UoK-Psychology/rmas_adapter.git](git://github.com/UoK-Psychology/rmas_adapter.git) then do ::
+Either clone from github: git://github.com/UoK-Psychology/rmas_adapter.git then do ::
 
 	python setup.py install
 

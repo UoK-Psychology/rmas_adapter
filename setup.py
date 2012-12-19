@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='RMASAdapter',
-    version='0.1.0',
+    version='0.1.1',
     author='Jason Marshall',
     author_email='j.j.marshall@kent.ac.uk',
     packages=['rmas_adapter', 
