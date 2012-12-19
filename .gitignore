@@ -12,3 +12,5 @@ dev/
 build/
 
 MANIFEST
+
+docs/_build
