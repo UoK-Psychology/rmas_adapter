@@ -20,7 +20,7 @@ class SettingsLoader(object):
             ImportError: If it can't import the setting module.
         '''
         
-        if object != None:
+        if settings_module != None:
             module = importlib.import_module(settings_module)
             
             for setting in dir(module):
