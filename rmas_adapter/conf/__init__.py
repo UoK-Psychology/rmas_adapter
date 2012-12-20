@@ -19,11 +19,16 @@ class SettingsLoader(object):
         Thorws:
             ImportError: If it can't import the setting module.
         '''
-        module = importlib.import_module(settings_module)
         
-        for setting in dir(module):
-            setattr(self, setting, getattr(module, setting))
+        if object != None:
+            module = importlib.import_module(settings_module)
+            
+            for setting in dir(module):
+                setattr(self, setting, getattr(module, setting))
         
         
 #convenience attribute that knows how to initiate the settings class.
-settings = SettingsLoader(os.environ[ENVIRONMENT_VARIABLE])
+try:
+    settings = SettingsLoader(os.environ[ENVIRONMENT_VARIABLE])
+except ImportError:
+    settings = SettingsLoader(None)
