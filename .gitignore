@@ -8,7 +8,6 @@ local_settings.py
 .pydevproject
 
 dist/
-dev/
 build/
 
 MANIFEST
