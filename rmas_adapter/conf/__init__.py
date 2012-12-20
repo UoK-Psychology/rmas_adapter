@@ -30,5 +30,5 @@ class SettingsLoader(object):
 #convenience attribute that knows how to initiate the settings class.
 try:
     settings = SettingsLoader(os.environ[ENVIRONMENT_VARIABLE])
-except ImportError:
+except KeyError:
     settings = SettingsLoader(None)
